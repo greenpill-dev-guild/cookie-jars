@@ -1,0 +1,40 @@
+{
+  "name": "cookie-jars",
+  "version": "0.0.0",
+  "private": true,
+  "keywords": [
+    "web3",
+    "dapp",
+    "ethereum",
+    "solidity",
+    "react",
+    "typescript",
+    "pnpm",
+    "foundry"
+  ],
+  "scripts": {
+    "foundry:up": "curl -L https://foundry.paradigm.xyz | bash && bash $HOME/.foundry/bin/foundryup",
+    "prepare": "(forge --version || pnpm foundry:up)",
+    "build": "pnpm recursive run build",
+    "lint": "pnpm recursive run lint",
+    "test": "pnpm recursive run test",
+    "dev": "concurrently -n \"APP,CONTRACTS\" -c \"bgMagenta.bold,bgCyan.bold\" \"pnpm run dev:app\" \"pnpm run dev:contracts\"",
+    "dev:app": "pnpm --filter 'client' run dev",
+    "dev:contracts": "pnpm --filter 'contracts' run  dev"
+  },
+  "dependencies": {
+    "dotenv": "16.4.5",
+    "ethers": "^6.13.2",
+    "viem": "^2.23.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.5.1",
+    "concurrently": "8.2.2",
+    "prettier": "^3.3.3",
+    "wait-port": "1.1.0"
+  },
+  "engines": {
+    "node": "20.x",
+    "pnpm": "^9.x"
+  }
+}

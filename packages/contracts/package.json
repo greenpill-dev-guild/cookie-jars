@@ -1,0 +1,31 @@
+{
+  "name": "contracts",
+  "version": "0.0.8",
+  "private": true,
+  "descripticon": "Contracts buikding off of Cookie Jar protocol",
+  "scripts": {
+    "account": "node script/ListAccount.js",
+    "chain": "anvil --config-out localhost.json",
+    "compile": "forge compile",
+    "dev": "forge build --via-ir",
+    "prettier": "prettier --write 'src/**/*.sol'",
+    "solhint": "solhint --config ./.solhint.json 'src/**/*.sol' --fix",
+    "lint": "pnpm run prettier && pnpm run solhint",
+    "anvil": "source .env && anvil --fork-url $ANVIL_FORK_URL --chain-id $ANVIL_CHAIN_ID",
+    "build": "forge build --via-ir",
+    "test": "pnpm run build && forge test -f https://eth-sepolia.g.alchemy.com/v2/i2qnBKk5GQ8pVGPLA-G3D9il5o0ULQO3 --gas-report",
+    "deploy:counter": "source .env && forge script script/Counter.s.sol:CounterScript --private-key $PRIVATE_KEY --etherscan-api-key $API_KEY_ETHERSCAN",
+    "deploy:cookie-jar": "source .env && forge script script/DeployActionRegistry.s.sol:DeployActionRegistry --private-key $PRIVATE_KEY --etherscan-api-key $API_KEY_ETHERSCAN"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/prettier": "2",
+    "envfile": "~6.18.0",
+    "toml": "~3.0.0",
+    "solidity-coverage": "^0.8.14",
+    "solhint": "^5.0.5",
+    "prettier": "^3.5.3",
+    "prettier-plugin-solidity": "^1.4.2"
+  }
+}
